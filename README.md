@@ -146,4 +146,56 @@ the record in your database but you can still use the object if you need to.
 	$post->delete();
 	# DELETE FROM `posts` WHERE id=1
 	echo $post->title; # 'New real title'
+    
+### Alias ###
+Adicionar um 'alias' único para cada tabela possiblitando assim a consulta WHERE de forma mais simples
 
+
+    class User extends ActiveRecord\Model{
+        
+        /**
+         * Informa a o nome da tabela 
+         * 
+         * @access Public static
+         * @var String
+        */ 
+        public static $table_name = 'consultora';
+    
+        /**
+         * Informa a chave primaria da tabela 
+         * 
+         * @access Public static
+         * @var String
+        */ 
+        public static $primary_key = 'consultora_id';
+        
+        
+        ####################################
+        ####### Inicio validações ########## 
+        ####################################
+        /**
+         * Define uma alias para a tabela
+        */
+        static $alias_table = 'u';
+        
+        /**
+         * Informa que tem ligação de um-para-muitos
+         * @obs Quais tabelas utilizam a chave primária deste model
+        */
+        static $has_many = array(
+            array('group', 'foreign_key' => 'fk_user_id', 'class_name' => 'User')
+        );
+        
+        public static function getUserGroup(){
+            
+            $users = User::all(
+                                array(
+                                      'joins'=>array('group'),
+                                      'conditions'=>array('u.status = ?', 'ativado'),
+                                      )
+                                
+                              );    
+            return $users;
+               
+        }
+    } 

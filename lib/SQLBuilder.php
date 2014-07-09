@@ -39,6 +39,8 @@ class SQLBuilder
     private $alias_select;
     
     /**
+     * @author Wesley David Santos
+     * @date 09/07/2014
      * Atributo que verifica se deve ser adicionado o comando IGNORE no SQL
      * @example INSERT IGNORE table () VALUES ()
     */
@@ -362,7 +364,7 @@ class SQLBuilder
 	{
 		require_once 'Expressions.php';
 		$keys = join(',',$this->quoted_key_names());
-
+        
         $ignore = $this->ignore ? 'IGNORE' : ''; /* Implementado */
 
 		if ($this->sequence)

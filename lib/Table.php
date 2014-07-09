@@ -59,6 +59,8 @@ class Table
 	private $relationships = array();
     
     /**
+     * @author Wesley David Santos
+     * @date 09/07/2014
      * Atributo que verifica se deve ser adicionado o comando IGNORE no SQL
      * @example INSERT IGNORE table () VALUES ()
     */
