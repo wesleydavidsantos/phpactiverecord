@@ -154,7 +154,7 @@ Possibilita inserir simultâneamente multi registros sem gerar erros
     	$post = new Post();
     	$post->title = 'My '.$x.' blog post!!';
     	$post->author_id = $x;
-    	$post->save();
+    	$post->save( false ); # Adicione boolean FALSE como parâmetro
     	# INSERT IGNORE INTO `posts` (title,author_id) VALUES('My 1 blog post!!', 1)
     }
     
