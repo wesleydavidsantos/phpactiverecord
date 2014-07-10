@@ -145,15 +145,17 @@ the record in your database but you can still use the object if you need to.
 	$post = Post::find(1);
 	$post->delete();
 	# DELETE FROM `posts` WHERE id=1
-	echo $post->title; # 'New real title'
+	echo $post->title; # 'New real title'    
     
 ### IGNORE ###    
 Possibilita inserir simultâneamente multi registros sem gerar erros
+
 for($x=0; $x < 10; $x++){
     $post = new Post();
     $post->title = 'My first blog post!! ' . $x;
     $post->author_id = $x;
     $post->save( false ); # Adicione o boolean FALSE como parâmetro
+    # INSERT IGNORE INTO `posts` (title,author_id) VALUES('My first blog post!! 1', 1)
 } 
     
 ### Alias ###
