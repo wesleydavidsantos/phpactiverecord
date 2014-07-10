@@ -146,17 +146,17 @@ the record in your database but you can still use the object if you need to.
 	$post->delete();
 	# DELETE FROM `posts` WHERE id=1
 	echo $post->title; # 'New real title'    
-    
-### IGNORE ###    
+
+### Insert Ignore ###
 Possibilita inserir simultâneamente multi registros sem gerar erros
 
-for($x=0; $x < 10; $x++){
-    $post = new Post();
-    $post->title = 'My first blog post!! ' . $x;
-    $post->author_id = $x;
-    $post->save( false ); # Adicione o boolean FALSE como parâmetro
-    # INSERT IGNORE INTO `posts` (title,author_id) VALUES('My first blog post!! 1', 1)
-} 
+    for($x=0; $x < 10; $x++){
+    	$post = new Post();
+    	$post->title = 'My '.$x.' blog post!!';
+    	$post->author_id = $x;
+    	$post->save();
+    	# INSERT IGNORE INTO `posts` (title,author_id) VALUES('My 1 blog post!!', 1)
+    }
     
 ### Alias ###
 Adicionar um 'alias' único para cada tabela possiblitando assim a consulta WHERE de forma mais simples
